@@ -163,6 +163,12 @@ class JDownloader extends ServiceAbstract
             $path = $jdpath;
         }
 
+        if($object->get("log-dir") !== '') {
+            $logpath = $object->get("log-dir");
+        }else{
+            $logpath = $path;
+        }
+
         //Store path
         $json_b['defaultdownloadfolder'] = $path;
 
@@ -185,12 +191,12 @@ Group=users
 CPUQuota=" . $numofcores*$cpuquota . "%
 Type=simple
 UMask=000
-ExecStart=/bin/sh -c '/usr/bin/java -Djava.awt.headless=true -jar /opt/jdownloader/JDownloader.jar > " . $path . "/jdownloader.log 2>&1'
+ExecStart=/bin/sh -c '/usr/bin/java -Djava.awt.headless=true -jar /opt/jdownloader/JDownloader.jar > " . $logpath . "/jdownloader.log 2>&1'
 Restart=always
 
 [Install]
 WantedBy=multi-user.target");
-            $cmd = "touch " . $path . "/jdownloader.log;chmod 777" . $path . "/jdownloader.log;systemctl daemon-reload";
+            $cmd = "touch " . $logpath . "/jdownloader.log;chmod 777" . $logpath . "/jdownloader.log;systemctl daemon-reload";
             $this->exec($cmd);
         } else {
             file_put_contents($this->jdownloaderServiceFile, "[Unit]

@@ -144,6 +144,15 @@ Ext.define('OMV.module.admin.service.jdownloader.Settings', {
                     text  : _('Directory to store downloads.')
                 }]
             },{
+                 xtype      : 'textfield',
+                name       : 'log-dir',
+                fieldLabel : _('Log drectory'),
+                allowBlank : true,
+                plugins    : [{
+                    ptype : 'fieldinfo',
+                    text  : _('Directory to store logfile')
+                }]
+            },{
                 xtype      : 'numberfield',
                 name       : 'cpuquota',
                 fieldLabel : _('CPU-quota'),

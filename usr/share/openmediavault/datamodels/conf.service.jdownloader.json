@@ -34,6 +34,9 @@
         "download-dir": {
             "type": "string"
         },
+        "log-dir": {
+            "type": "string"
+        },
         "jderror": {
             "type": "string",
             "default": ""
